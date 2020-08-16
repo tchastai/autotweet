@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Autotweet
+  version: '1.0'
+  description: BFF for the Autotweet mobile app
+  contact:
+    name: Aymerick Valette
+  license:
+    name: MIT
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /oauth/request_token:
+    get:
+      summary: getRequestToken
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  tokenSecret:
+                    type: string
+      operationId: get-oauth-request_token
+      security: []
+      description: Gets a request token
+  /oauth/access_token:
+    get:
+      summary: getAccessToken
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  tokenSecret:
+                    type: string
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+              examples: {}
+      operationId: get-oauth-access_token
+      description: |
+        Returns an access token from from the given AuthenticateResponse.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: oauth_token
+          description: |
+            Request Token
+        - schema:
+            type: string
+          in: query
+          name: oauth_verifier
+          description: Request Verifier
+  /accounts/info:
+    get:
+      summary: getAccountInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  profilePictureURL:
+                    type: string
+      operationId: get-account-get_info
+      security:
+        - accessCredentials: []
+    parameters: []
+  '/trends/metrics/{username}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      summary: getTrendIndicators
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  points:
+                    type: integer
+                  retweets:
+                    type: integer
+                  favorites:
+                    type: integer
+                  replies:
+                    type: integer
+      operationId: get-trends-userId
+      description: Returns account activity trends over the last month
+      security:
+        - accessCredentials: []
+components:
+  schemas: {}
+  securitySchemes:
+    accessCredentials:
+      type: http
+      scheme: basic
+security:
+  - credentials: []

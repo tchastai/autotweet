@@ -1,0 +1,84 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    background: #1b1c1e;
+  }
+
+  canvas {
+    height: 185px;
+  }
+</style>
+<div>
+  <canvas></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+  const config = {
+    Colors: {
+      PURPLE: "#9965F2",
+      PURPLE_GRADIENT: "rgba(201, 158, 250, 0.2)",
+      TRANSPARENT: "rgba(0,0,0,0)",
+      SECONDARY_GREY: "rgba(235,235,245,0.30)",
+      LINE: "#717274",
+      ZERO_LINE: "#39393A",
+    },
+  };
+
+  const ctx = document.querySelector("canvas").getContext("2d");
+  const gradient = ctx.createLinearGradient(0, 0, 0, 184);
+
+  const dataPoints = [ {{range .DataPoints}} {{.}}, {{end}} ]
+
+  gradient.addColorStop(0, config.Colors.PURPLE_GRADIENT);
+  gradient.addColorStop(1, config.Colors.TRANSPARENT);
+
+  Chart.defaults.global.defaultFontColor = config.Colors.SECONDARY_GREY;
+  Chart.defaults.global.defaultFontSize = 11;
+
+  const chart = new Chart(ctx, {
+    type: "line",
+
+    data: {
+      labels: dataPoints.map((_, i) => i),
+      datasets: [
+        {
+          backgroundColor: gradient,
+          borderColor: config.Colors.PURPLE,
+          data: dataPoints,
+        },
+      ],
+    },
+    options: {
+      animation: false,
+      layout: {
+        padding: {
+          top: 8,
+        },
+      },
+      maintainAspectRatio: false,
+      responsive: true,
+
+      scales: {
+        yAxes: [
+          {
+            display: false,
+          },
+        ],
+        xAxes: [
+          {
+            gridLines: {
+              borderDash: [1, 8],
+              color: config.Colors.LINE,
+              zeroLineColor: config.Colors.ZERO_LINE,
+              drawTicks: false,
+              drawBorder: false,
+            },
+          },
+        ],
+      },
+      legend: {
+        display: false,
+      },
+    },
+  });
+</script>
