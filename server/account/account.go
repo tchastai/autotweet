@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"server/auth"
+
 	"github.com/dghubble/go-twitter/twitter"
-	"github.com/valaymerick/autotweet/server/auth"
 )
 
 // Account represents a Twitter account

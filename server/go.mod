@@ -1,4 +1,4 @@
-module github.com/valaymerick/autotweet/server
+module server
 
 go 1.14
 

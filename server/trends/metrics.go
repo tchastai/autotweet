@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"server/auth"
+
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/gorilla/mux"
-	"github.com/valaymerick/autotweet/server/auth"
 )
 
 type metrics struct {

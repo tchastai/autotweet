@@ -6,9 +6,10 @@ import (
 	"net/http"
 	"strconv"
 
+	"server/auth"
+
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/gorilla/mux"
-	"github.com/valaymerick/autotweet/server/auth"
 )
 
 type graphViewData struct {

@@ -11,9 +11,9 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/urfave/cli/v2"
 
-	"github.com/valaymerick/autotweet/server/account"
-	"github.com/valaymerick/autotweet/server/auth"
-	"github.com/valaymerick/autotweet/server/trends"
+	"server/account"
+	"server/auth"
+	"server/trends"
 )
 
 // Serve creates an http listening to `port`

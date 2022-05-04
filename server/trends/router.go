@@ -1,8 +1,9 @@
 package trends
 
 import (
+	"server/auth"
+
 	"github.com/gorilla/mux"
-	"github.com/valaymerick/autotweet/server/auth"
 )
 
 // RegisterRouter attaches `trends` handlers to the provided router

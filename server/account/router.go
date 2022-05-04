@@ -1,8 +1,9 @@
 package account
 
 import (
+	"server/auth"
+
 	"github.com/gorilla/mux"
-	"github.com/valaymerick/autotweet/server/auth"
 )
 
 // RegisterRouter attaches `account` handlers to the provided router
